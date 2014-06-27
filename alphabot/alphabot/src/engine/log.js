@@ -4,7 +4,7 @@
     alphabot.Engine = alphabot.Engine || {};
 
     if (alphabot.Engine.Log) {
-        if (console != undefined && console.log != undefined) {
+        if (console !== undefined && console.log !== undefined) {
             console.log('alphabot.Engine.Log is already defined.');
         }
 

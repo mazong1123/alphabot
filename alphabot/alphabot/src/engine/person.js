@@ -9,7 +9,7 @@
     alphabot.Engine = alphabot.Engine || {};
 
     if (alphabot.Engine.Person) {
-        if (console != undefined && console.log != undefined) {
+        if (console !== undefined && console.log !== undefined) {
             console.log('alphabot.Engine.Person is already defined.');
         }
 
