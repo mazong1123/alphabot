@@ -32,8 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="engine.js" />
     <Content Include="index.html" />
+    <Content Include="src\class.js" />
+    <Content Include="src\engine\frame.js" />
+    <Content Include="src\engine\log.js" />
+    <Content Include="src\engine\person.js" />
+    <Content Include="src\version.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
