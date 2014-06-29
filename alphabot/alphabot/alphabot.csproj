@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="index.html" />
-    <Content Include="sample_data\single_log_list.js" />
+    <Content Include="sample_data\single_log_list.txt" />
     <Content Include="lib\jquery.js" />
     <Content Include="src\class.js" />
     <Content Include="src\engine\bot.js" />

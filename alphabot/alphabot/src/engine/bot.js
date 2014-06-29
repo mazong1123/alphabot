@@ -15,11 +15,21 @@
         init: function (option) {
         },
 
+        //////////////////////////////////
+        // Parse Alpha Expression.
         parse: function (logListData) {
-            // TODO: Parse Alpaha Expression here.
+            var logListJson = null;
+            if (typeof logListData === 'string') {
+                logListJson = $.parseJSON(logListData);
+            }
+            else {
+                logListJson = logListData;
+            }
+
             var option = {
-                title: 'Test log list.'
+                title: logListJson.title
             };
+
             var logList = new alphabot.Engine.LogList(option);
             
             return logList;
