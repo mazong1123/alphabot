@@ -39,4 +39,4 @@
             return self.currentFace;
         }
     });
-});
+})();

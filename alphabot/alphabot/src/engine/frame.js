@@ -25,4 +25,4 @@
             this.rightPerson = option.rightPerson;
         }
     });
-});
+})();

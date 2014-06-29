@@ -34,13 +34,19 @@
   <ItemGroup>
     <Content Include="index.html" />
     <Content Include="sample_data\single_log_list.js" />
+    <Content Include="lib\jquery.js" />
     <Content Include="src\class.js" />
+    <Content Include="src\engine\bot.js" />
     <Content Include="src\engine\frame.js" />
     <Content Include="src\engine\log.js" />
     <Content Include="src\engine\log_list.js" />
     <Content Include="src\engine\person.js" />
     <Content Include="src\infrastructure\list.js" />
+    <Content Include="src\ui\log_player.js" />
     <Content Include="src\version.js" />
+    <Content Include="test\engine.html" />
+    <Content Include="test\qunit.css" />
+    <Content Include="test\qunit.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

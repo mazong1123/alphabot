@@ -4,14 +4,14 @@
     alphabot.Infrastructure = alphabot.Infrastructure || {};
 
     if (alphabot.Infrastructure.List) {
-        if (console !== undefined && console.LogList !== undefined) {
+        if (console !== undefined && console.log !== undefined) {
             console.log('alphabot.Infrastructure.List is already defined.');
         }
 
         return;
     }
 
-    alphabot.Infrastructure.List = Class.Extend({
+    alphabot.Infrastructure.List = Class.extend({
         init: function (option) {
             this.items = option.items;
             this.currentIndex = 0;
@@ -37,4 +37,4 @@
             this.currentIndex = 0;
         }
     });
-});
+})();

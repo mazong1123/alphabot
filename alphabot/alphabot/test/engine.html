@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>QUnit Example</title>
+    <link rel="stylesheet" href="qunit.css">
+    <script src="../lib/jquery.js"></script>
+    <script src="../src/class.js"></script>
+    <script src="../src/version.js"></script>
+    <script src="../src/infrastructure/list.js"></script>
+    <script src="../src/engine/person.js"></script>
+    <script src="../src/engine/frame.js"></script>
+    <script src="../src/engine/log.js"></script>
+    <script src="../src/engine/log_list.js"></script>
+    <script src="../src/engine/bot.js"></script>
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="qunit.js"></script>
+    <script>
+
+        $.getScript('../sample_data/single_log_list.js', function (data) {
+            // Load the test data, then exectue the tests.
+            QUnit.test("bot data parse test", function (assert) {
+                // Prepare
+                var expectedLogListTitle = 'Test log list.';
+
+                // Act
+                var bot = new alphabot.Engine.Bot();
+                var parsedLogList = bot.parse(data);
+                var actualLogListTitle = parsedLogList.getTitle();
+
+                // Assert
+                assert.equal(expectedLogListTitle, actualLogListTitle, 'failed to parse log list title.');
+            });
+        });
+    </script>
+</body>
+</html>
