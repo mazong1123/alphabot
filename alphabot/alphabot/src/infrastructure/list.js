@@ -35,6 +35,12 @@
         reset: function () {
             var self = this;
             this.currentIndex = 0;
+        },
+
+        getItems: function () {
+            var self = this;
+
+            return self.items;
         }
     });
 })();

@@ -21,20 +21,30 @@
     <script src="qunit.js"></script>
     <script>
 
-        $.getScript('../sample_data/single_log_list.txt', function (data) {
-            // Load the test data, then exectue the tests.
-            QUnit.test("bot data parse test", function (assert) {
-                // Prepare
-                var expectedLogListTitle = 'Test log list.';
+        $.ajax({
+            url: '../sample_data/single_log_list.txt',
+            dataType: 'json',
+            success: function (data) {
+                // Load the test data, then exectue the tests.
+                QUnit.test("bot data parse test", function (assert) {
+                    // Prepare
+                    var expectedLogListTitle = 'Test log list.';
+                    var expectedLogItemCount = 2;
 
-                // Act
-                var bot = new alphabot.Engine.Bot();
-                var parsedLogList = bot.parse(data);
-                var actualLogListTitle = parsedLogList.getTitle();
+                    // Act
+                    var bot = new alphabot.Engine.Bot();
+                    var parsedLogList = bot.parse(data);
+                    var actualLogListTitle = parsedLogList.getTitle();
+                    var actualLogItem = parsedLogList.getItems();
 
-                // Assert
-                assert.equal(expectedLogListTitle, actualLogListTitle, 'failed to parse log list title.');
-            });
+                    // Assert
+                    assert.equal(expectedLogListTitle, actualLogListTitle, 'failed to parse log list title.');
+                    assert.equal(expectedLogItemCount, actualLogItem.length, 'failed to parse log item count');
+                });
+            },
+            error: function (jqxr, message, exception) {
+                console.log(exception);
+            }
         });
     </script>
 </body>
