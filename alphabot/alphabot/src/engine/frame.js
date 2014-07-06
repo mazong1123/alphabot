@@ -21,8 +21,14 @@
         init: function (option) {
             this.text = option.text;
             this.direction = option.direction;
-            this.leftPerson = option.leftPerson;
-            this.rightPerson = option.rightPerson;
+
+            if (option.left !== undefined) {
+                this.leftPerson = new alphabot.Engine.Person(option.left);
+            }
+
+            if (option.right !== undefined) {
+                this.rightPerson = new alphabot.Engine.Person(option.right);
+            }
         },
 
         getText: function () {
@@ -35,6 +41,12 @@
             var self = this;
 
             return self.direction;
+        },
+
+        getLeftPerson: function () {
+            var self = this;
+
+            return self.leftPerson;
         }
     });
 })();

@@ -38,8 +38,8 @@
                     var actualLogItems = parsedLogList.getItems();
 
                     // Assert
-                    assert.equal(expectedLogListTitle, actualLogListTitle, 'failed to parse log list title.');
-                    assert.equal(expectedLogItemCount, actualLogItems.length, 'failed to parse log item count');
+                    assert.equal(expectedLogListTitle, actualLogListTitle, 'Parse log list title.');
+                    assert.equal(expectedLogItemCount, actualLogItems.length, 'Parse log item count');
                 });
 
                 QUnit.test('bot data parse test - log', function (assert) {
@@ -53,7 +53,7 @@
                     var actualFrames = actualLogItem.getItems();
 
                     // Assert
-                    assert.equal(expectedFramesCount, actualFrames.length, 'failed to parse log frame count.');
+                    assert.equal(expectedFramesCount, actualFrames.length, 'Parse log frame count.');
                 });
 
                 QUnit.test('bot data parse test - frame basic', function (assert) {
@@ -76,10 +76,66 @@
                     var actualFrame2Direction = actualFrames[1].getDirection();
 
                     // Assert
-                    assert.equal(expectedFrame1Text, actualFrame1Text, 'failed to parse frame1 text.');
-                    assert.equal(expectedFrame1Direction, actualFrame1Direction, 'failed to parse frame1 direction.');
-                    assert.equal(expectedFrame2Text, actualFrame2Text, 'failed to parse frame2 text.');
-                    assert.equal(expectedFrame2Direction, actualFrame2Direction, 'failed to parse frame2 direction.');
+                    assert.equal(expectedFrame1Text, actualFrame1Text, 'Parse frame1 text.');
+                    assert.equal(expectedFrame1Direction, actualFrame1Direction, 'Parse frame1 direction.');
+                    assert.equal(expectedFrame2Text, actualFrame2Text, 'Parse frame2 text.');
+                    assert.equal(expectedFrame2Direction, actualFrame2Direction, 'Parse frame2 direction.');
+                });
+
+                QUnit.test('bot data parse test - characters', function (assert) {
+                    // Prepare
+                    var expectedFrame1LeftName = 'User 1';
+                    var expectedFrame1LeftFaceSet = 'http://images/user1_fc.png';
+                    var expectedFrame1LeftFaces = [{
+                        "x": 0,
+                        "y": 0
+                    }, {
+                        "x": 36,
+                        "y": 0
+                    }];
+                    var expectedFrame1LeftCurrentFace = {
+                        "x": 36,
+                        "y": 0
+                    };
+
+                    // Act
+                    var bot = new alphabot.Engine.Bot();
+                    var parsedLogList = bot.parse(data);
+                    var actualLogItem = parsedLogList.getItems()[0];
+                    var actualFrames = actualLogItem.getItems();
+
+                    var actualLeftPerson = actualFrames[0].getLeftPerson();
+                    var actualLeftPersonName = actualLeftPerson.getName();
+                    var actualLeftPersonFaceSet = actualLeftPerson.getFaceSet();
+                    var actualLeftPersonFaces = actualLeftPerson.getFaces();
+                    var actualLeftPersonCurrentFace = actualLeftPerson.getCurrentFace();
+
+                    // Assert
+                    assert.equal(expectedFrame1LeftName, actualLeftPersonName, 'Parse frame1 left person name.');
+                    assert.equal(expectedFrame1LeftFaceSet, actualLeftPersonFaceSet, 'Parse frame1 left person faceSet.');
+                    assert.deepEqual(expectedFrame1LeftFaces, actualLeftPersonFaces, 'Parse frame1 left person faces.');
+                    assert.deepEqual(expectedFrame1LeftCurrentFace, actualLeftPersonCurrentFace, 'Parse frame1 left person current face.');
+                });
+
+                QUnit.test('person action test', function (assert) {
+                    // Prepare
+                    var expectedCurrentFace = {
+                        "x": 0,
+                        "y": 0
+                    };
+
+                    // Act
+                    var bot = new alphabot.Engine.Bot();
+                    var parsedLogList = bot.parse(data);
+                    var actualLogItem = parsedLogList.getItems()[0];
+                    var actualFrames = actualLogItem.getItems();
+
+                    var actualLeftPerson = actualFrames[0].getLeftPerson();
+                    actualLeftPerson.setCurrentFace(0);
+                    
+                    var actualLeftPersonCurrentFace = actualLeftPerson.getCurrentFace();
+
+                    assert.deepEqual(expectedCurrentFace, actualLeftPersonCurrentFace, 'Parse frame1 left person current face.');
                 });
             },
             error: function (jqxr, message, exception) {

@@ -19,24 +19,56 @@
     alphabot.Engine.Person = Class.extend({
         init: function (option) {
             this.name = option.name;
-            this.faceSetUrl = option.faceSetUrl;
+            this.faceSet = option.faceSet;
 
             // The faces looks like:
             // [{x: 0, y: 0}, {x: 30, y: 0}]
             // faceset is actually a sprite image. faces inicates the position of each face on the sprite.
             this.faces = option.faces;
-            this.currentFace = 0;
+
+            if (option.faceIndex !== undefined) {
+                this.currentFaceIndex = option.faceIndex;
+            }
+            else {
+                this.currentFaceIndex = 0;
+            }
         },
 
-        setFace: function (faceIndex) {
+        setCurrentFace: function (faceIndex) {
             var self = this;
-            self.currentFace = faceIndex;
+            self.currentFaceIndex = faceIndex;
         },
 
         getCurrentFace: function () {
             var self = this;
+            var currentFace = self.faces[self.currentFaceIndex];
 
-            return self.currentFace;
+            return currentFace;
+        },
+
+        getFace: function (faceIndex) {
+            var self = this;
+            var f = self.faces[faceIndex];
+
+            return f;
+        },
+
+        getName: function () {
+            var self = this;
+
+            return self.name;
+        },
+
+        getFaceSet: function () {
+            var self = this;
+
+            return self.faceSet;
+        },
+
+        getFaces: function () {
+            var self = this;
+
+            return self.faces;
         }
     });
 })();
