@@ -26,7 +26,7 @@
             dataType: 'json',
             success: function (data) {
                 // Load the test data, then exectue the tests.
-                QUnit.test("bot data parse test", function (assert) {
+                QUnit.test('bot data parse test - log list', function (assert) {
                     // Prepare
                     var expectedLogListTitle = 'Test log list.';
                     var expectedLogItemCount = 2;
@@ -35,11 +35,51 @@
                     var bot = new alphabot.Engine.Bot();
                     var parsedLogList = bot.parse(data);
                     var actualLogListTitle = parsedLogList.getTitle();
-                    var actualLogItem = parsedLogList.getItems();
+                    var actualLogItems = parsedLogList.getItems();
 
                     // Assert
                     assert.equal(expectedLogListTitle, actualLogListTitle, 'failed to parse log list title.');
-                    assert.equal(expectedLogItemCount, actualLogItem.length, 'failed to parse log item count');
+                    assert.equal(expectedLogItemCount, actualLogItems.length, 'failed to parse log item count');
+                });
+
+                QUnit.test('bot data parse test - log', function (assert) {
+                    // Prepare
+                    var expectedFramesCount = 2;
+
+                    // Act
+                    var bot = new alphabot.Engine.Bot();
+                    var parsedLogList = bot.parse(data);
+                    var actualLogItem = parsedLogList.getItems()[0];
+                    var actualFrames = actualLogItem.getItems();
+
+                    // Assert
+                    assert.equal(expectedFramesCount, actualFrames.length, 'failed to parse log frame count.');
+                });
+
+                QUnit.test('bot data parse test - frame basic', function (assert) {
+                    // Prepare
+                    var expectedFrame1Text = 'This is frame1';
+                    var expectedFrame1Direction = 0;
+
+                    var expectedFrame2Text = 'This is frame2';
+                    var expectedFrame2Direction = 1;
+
+                    // Act
+                    var bot = new alphabot.Engine.Bot();
+                    var parsedLogList = bot.parse(data);
+                    var actualLogItem = parsedLogList.getItems()[0];
+                    var actualFrames = actualLogItem.getItems();
+
+                    var actualFrame1Text = actualFrames[0].getText();
+                    var actualFrame1Direction = actualFrames[0].getDirection();
+                    var actualFrame2Text = actualFrames[1].getText();
+                    var actualFrame2Direction = actualFrames[1].getDirection();
+
+                    // Assert
+                    assert.equal(expectedFrame1Text, actualFrame1Text, 'failed to parse frame1 text.');
+                    assert.equal(expectedFrame1Direction, actualFrame1Direction, 'failed to parse frame1 direction.');
+                    assert.equal(expectedFrame2Text, actualFrame2Text, 'failed to parse frame2 text.');
+                    assert.equal(expectedFrame2Direction, actualFrame2Direction, 'failed to parse frame2 direction.');
                 });
             },
             error: function (jqxr, message, exception) {

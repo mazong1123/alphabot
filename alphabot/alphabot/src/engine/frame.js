@@ -23,6 +23,18 @@
             this.direction = option.direction;
             this.leftPerson = option.leftPerson;
             this.rightPerson = option.rightPerson;
+        },
+
+        getText: function () {
+            var self = this;
+
+            return self.text;
+        },
+
+        getDirection: function () {
+            var self = this;
+
+            return self.direction;
         }
     });
 })();

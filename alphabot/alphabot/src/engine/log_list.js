@@ -15,6 +15,12 @@
         init: function (option) {
             this._super(option);
             this.title = option.title;
+
+            for (var i = 0; i < option.logs.length; i++) {
+                var logData = option.logs[i];
+                var log = new alphabot.Engine.Log(logData);
+                this.items.push(log);
+            }
         },
 
         getTitle: function () {

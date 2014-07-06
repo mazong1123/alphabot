@@ -14,6 +14,12 @@
     alphabot.Engine.Log = alphabot.Infrastructure.List.extend({
         init: function (option) {
             this._super(option);
+
+            for (var i = 0; i < option.frames.length; i++) {
+                var frameData = option.frames[i];
+                var frame = new alphabot.Engine.Frame(frameData);
+                this.items.push(frame);
+            }
         }
     });
 })();

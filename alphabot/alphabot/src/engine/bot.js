@@ -26,11 +26,7 @@
                 logListJson = logListData;
             }
 
-            var option = {
-                title: logListJson.title
-            };
-
-            var logList = new alphabot.Engine.LogList(option);
+            var logList = new alphabot.Engine.LogList(logListJson);
             
             return logList;
         }

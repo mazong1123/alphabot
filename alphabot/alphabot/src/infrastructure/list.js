@@ -14,6 +14,10 @@
     alphabot.Infrastructure.List = Class.extend({
         init: function (option) {
             this.items = option.items;
+            if (this.items === undefined) {
+                this.items = new Array();
+            }
+
             this.currentIndex = 0;
         },
 
