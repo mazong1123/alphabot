@@ -13,6 +13,14 @@
 
     alphabot.UI.LogPlayer = Class.Extend({
         init: function (option) {
+            this.element = $(option.selector);
+            this.data = option.data;
+            this.bot = new alphabot.Engine.Bot();
+            this.logList = bot.parse(this.data);
+        },
+
+        initialize: function () {
+            // Load all needed resources, configure all settings.
         }
     });
 })();

@@ -45,6 +45,7 @@
     <Content Include="src\ui\log_player.js" />
     <Content Include="src\version.js" />
     <Content Include="test\engine.html" />
+    <Content Include="test\log_player.html" />
     <Content Include="test\qunit.css" />
     <Content Include="test\qunit.js" />
   </ItemGroup>
